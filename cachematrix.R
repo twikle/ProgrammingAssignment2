@@ -1,15 +1,26 @@
-## Put comments here that give an overall description of what your
-## functions do
+## makeCacheMatrix creates the matrix used as the input for the cacheSolve function.
 
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix <- function(x=numeric()){
+    m <- NULL
+    set <- function(y) {
+        c <<- y
+        m <<- NULL
+    }
+    get <- function() x
+    list (set =set, get = get)
 }
 
 
-## Write a short comment describing this function
+## cacheSolve is used to solve the inverse matrix of the matrix created in makeCacheMatrix.
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cacheSolve <- function (x) {
+    m <- x$get()
+    if(is.null(m)) {
+        message("getting inversed matrix")
+        return(m)
+    }
+    data <- x$get()
+    m <- solve(data) # Get the inverse matrix
+    m
+    
 }
